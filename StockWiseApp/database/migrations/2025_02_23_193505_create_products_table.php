@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //adicionar fornecedores
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('quantity');
             $table->dateTime('expiration_date');
+            $table->float('cost', 4, 2);
             $table->float('price', 4, 2);
-            $table->foreignId('stock_id')->constrained();
+            $table->foreignId('supplier_id')->constrained();
             $table->timestamps();
         });
     }
