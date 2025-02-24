@@ -57,6 +57,7 @@ class ProductController extends Controller
     {
         $user_type =  Auth::type();
         if($user_type == 'admin'){
+            //NOTE: faz uma view para editar ou simplesmente trona o campo da tabela como editável?? ou ainda, que tal uma modal?
             return view('products.edit', compact('product', 'user_type'));
         } else {
             return redirect()->route('products.index')->with('error', 'Você não possui permissão para acessar essa página.');
