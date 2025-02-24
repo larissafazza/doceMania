@@ -32,7 +32,7 @@ class ProductController extends Controller
             'name' => 'required|string',
             'quantity' => 'required|integer',
             'expiration_date' => 'required|date',
-            'price' => 'required|float',
+            'price' => 'required|numeric',
             'supplier_id' => 'required|integer'
         ]);
 
