@@ -18,7 +18,7 @@ return new class extends Migration
             $table->float('total_credit', 4, 2);
             $table->float('total_debit', 4, 2);
             $table->float('total_card', 4, 2);
-            $table->float('total money', 4, 2);
+            $table->float('total_money', 4, 2);
             $table->float('total_pix', 4, 2);
             $table->timestamps();
         });
