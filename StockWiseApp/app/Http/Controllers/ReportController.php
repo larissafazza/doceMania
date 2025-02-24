@@ -7,44 +7,42 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        //NOTE: no front, verificar se está no final do dia, e só disponibilizar a opção de imprimir se estiver
+        // user = auth()->user();
+        $products = Product::all();
+        $reports = Report::all();
+
+        return view('products.index', compact('products', 'reports'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        //NOTE: it creates automatically in the beginning of the day when the login is made in the day
+
+        $existingReport = Report::whereDate('date', now()->toDateString())->first();
+
+        if ($existingReport) {
+            return redirect()->route('reports.index');
+        }
+
+        $report = new Report();
+        $report->date = now();
+        $report->save();
+
+        return redirect()->route('reports.index')->with('success', 'Relatório criado com sucesso');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Report $report)
     {
-        //
+        $sales = $report->sales;
+        return view('reports.show', compact('report','sales'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Report $report)
     {
-        //
+        //NOTE: É possível editar um relatório? uma vez que ele é automático de acordo com as vendas?
     }
 
     /**
@@ -52,14 +50,11 @@ class ReportController extends Controller
      */
     public function update(Request $request, Report $report)
     {
-        //
+        //NOTE: Atualiza automaticamente com as vendas
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Report $report)
     {
-        //
+        //NOTE: não remover histórico
     }
 }
