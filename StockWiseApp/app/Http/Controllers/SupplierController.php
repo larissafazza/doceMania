@@ -16,7 +16,7 @@ class SupplierController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view('products.edit', compact('products'));
+        return view('products.create', compact('products'));
     }
 
     public function store(Request $request)
