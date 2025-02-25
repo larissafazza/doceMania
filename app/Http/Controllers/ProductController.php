@@ -9,10 +9,10 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
+        // $user = auth()->user();
         $products = Product::all();
 
-        return view('products.index', compact('products', 'user'));
+        return view('products.index', compact('products'));
     }
 
     public function create()
