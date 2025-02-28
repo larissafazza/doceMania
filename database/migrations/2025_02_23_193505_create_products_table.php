@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->integer('quantity');
             $table->dateTime('expiration_date');
-            $table->float('cost', 4, 2);
-            $table->float('price', 4, 2);
+            $table->float('cost', 6, 2);
+            $table->float('price', 6, 2);
             $table->foreignId('supplier_id')->constrained();
             $table->timestamps();
         });

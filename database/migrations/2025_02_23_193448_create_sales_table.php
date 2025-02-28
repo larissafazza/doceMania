@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('client_name');
             $table->dateTime('date_time');
-            $table->float('total_cost', 4, 2);
+            $table->float('total_cost', 6, 2);
             $table->string('payment_method');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('report_id')->constrained();

@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->dateTime('generated_at');
-            $table->float('total_credit', 4, 2);
-            $table->float('total_debit', 4, 2);
-            $table->float('total_card', 4, 2);
-            $table->float('total_money', 4, 2);
-            $table->float('total_pix', 4, 2);
+            $table->float('total_credit', 6, 2);
+            $table->float('total_debit', 6, 2);
+            $table->float('total_card', 6, 2);
+            $table->float('total_money', 6, 2);
+            $table->float('total_pix', 6, 2);
             $table->timestamps();
         });
     }
