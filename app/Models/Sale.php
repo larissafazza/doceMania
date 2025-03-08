@@ -31,4 +31,9 @@ class Sale extends Model
         return $this->BelongsTo(Report::class);
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withPivot('quantity');
+    }
+
 }
