@@ -11,10 +11,12 @@ class ReportController extends Controller
     {
         //NOTE: no front, verificar se está no final do dia, e só disponibilizar a opção de imprimir se estiver
         // user = auth()->user();
+        $date = now()->toDateString();
         $products = Product::all();
-        $reports = Report::all();
+        $currentReport = Report::whereDate('date', $date)->first();
+        $sales = $currentReport->sales;
 
-        return view('products.index', compact('products', 'reports'));
+        return view('reports.index', compact('products', 'sales', 'currentReport', 'date'));
     }
 
     public function create()
