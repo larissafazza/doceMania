@@ -14,13 +14,9 @@ use App\Http\Controllers\SaleController;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
-
 // Auth::routes();
 // Route::get('/', function () {
-//     return view('auth.login');
+//     return view('products.index');
 // });
 
 Route::resource('products', ProductController::class);
