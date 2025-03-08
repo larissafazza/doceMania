@@ -1,0 +1,61 @@
+body{
+    background-color: #ddf3ff;
+}
+.nav-link{
+    color:rgb(32, 49, 145);
+}
+table{
+    width: 100%;
+    background-color: rgb(255, 250, 243);
+    border-top: 2px solid #f3969a;
+    margin-top: 20px;
+}
+th {
+    color:rgb(32, 49, 145);
+    font-weight: bold;
+    border: 2px solid #d9d9d9;
+    padding: 10px;
+    text-align: center;
+    border-top: #8d0c68;
+}
+td {
+    color:black;
+    border: 2px solid #d9d9d9;
+    padding: 10px;
+    text-align: center;
+  }
+div{
+    position: relative;
+}
+/* products */
+.products-table{
+    width: 100%;
+    background-color: rgb(255, 250, 243);
+    margin-top: 20px;
+}
+.add-products-button{
+    position: absolute;
+}
+.content-header{
+    display:flexbox;
+}
+.btn-create-item{
+    float:right;
+    margin-bottom: 30px;
+}
+.select-form-item{
+    width: 20%;
+    margin-right: 15px;
+}
+.search-button{
+    margin-right: 15px;
+}
+.nav-img{
+    width: 100px !important;
+}
+.limited-text {
+    max-width: 500px;  /* Define um limite de largura */
+    overflow: hidden;
+    /* white-space: nowrap; */
+    text-overflow: ellipsis;
+}
