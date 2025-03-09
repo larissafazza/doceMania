@@ -4,16 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use Illuminate\Http\Request;
+use App\Http\Response;
+use App\Models\Product;
+use App\Http\Controllers\ProductController;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportController extends Controller
 {
+    public function missing()
+    {
+        $missingProducts = Product::where('quantity', '<=', 0)->get();
+
+        return view('reports.missing', compact('missingProducts'));
+    }
+
     public function index()
     {
-        //NOTE: no front, verificar se está no final do dia, e só disponibilizar a opção de imprimir se estiver
-        // user = auth()->user();
         $date = now()->toDateString();
         $products = Product::all();
-        $currentReport = Report::whereDate('date', $date)->first();
+        $currentReport = Report::whereDate('generated_at', $date)->first();
         $sales = $currentReport->sales;
 
         return view('reports.index', compact('products', 'sales', 'currentReport', 'date'));
@@ -58,5 +67,14 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         //NOTE: não remover histórico
+    }
+
+    public function exportPdf()
+    {
+        $missingProducts = Product::where('quantity', '<=', 0)->get();
+
+        $pdf = Pdf::loadView('reports.missing_pdf', compact('missingProducts'));
+
+        return $pdf->download('lista_de_faltas.pdf');
     }
 }

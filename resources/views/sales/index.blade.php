@@ -29,12 +29,12 @@
     <table class="products-table">
         <thead>
             <tr>
-                <th scope="col">Vendedor</th>
-                <th scope="col">Horário</th>
-                <th scope="col">Cliente</th>
-                <th scope="col">Produtos</th>
-                <th scope="col">Pagamento</th>
-                <th scope="col">Valor</th>
+                <th class="table-head" scope="col">Vendedor</th>
+                <th class="table-head" scope="col">Horário</th>
+                <th class="table-head" scope="col">Cliente</th>
+                <th class="table-head" scope="col">Produtos</th>
+                <th class="table-head" scope="col">Pagamento</th>
+                <th class="table-head" scope="col">Valor</th>
             </tr>
         </thead>
         <tbody>

@@ -178,5 +178,35 @@ class ProductSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        DB::table('products')->insert([
+            'name' => 'Bala Fini 250g',
+            'quantity' => 0,
+            'expiration_date' => Carbon::now()->addMonths(12)->toDateString(),
+            'cost' => 2.99,
+            'price' => 6.49,
+            'supplier_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('products')->insert([
+            'name' => 'ChicleFita',
+            'quantity' => 0,
+            'expiration_date' => Carbon::now()->addMonths(12)->toDateString(),
+            'cost' => 1.99,
+            'price' => 2.40,
+            'supplier_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('products')->insert([
+            'name' => 'DipLoko',
+            'quantity' => 0,
+            'expiration_date' => Carbon::now()->addMonths(12)->toDateString(),
+            'cost' => 0.99,
+            'price' => 1.90,
+            'supplier_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
