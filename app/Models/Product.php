@@ -14,12 +14,12 @@ class Product extends Model
         'quantity',
         'expiration_date',
         'price',
-        'stock_id'
+        'supplier_id'
     ];
 
     public function supplier(){
 
-        return $this->BelongsTo(Supplier::class);
+        return $this->BelongsTo(Supplier::class, 'supplier_id');
     }
 
     public function sales()

@@ -23,7 +23,9 @@ class ProductController extends Controller
         } else {
             return redirect()->route('products.index')->with('error', 'Você não possui permissão para acessar essa página.');
         }
-        return view('products.create', compact('user_id'));
+
+        $suppliers = Supplier::all(); // Busca todos os fornecedores
+        return view('products.create', compact('user_id', suppliers));
     }
 
     public function store(Request $request)
@@ -44,12 +46,16 @@ class ProductController extends Controller
             'supplier_id' => $request->supplier_id
         ];
 
-        $product = Todo::create($data);
+        $product = Product::create($data);
 
         if ($request->ajax()) {
             return response()->json(['message' => 'Oops! Something happened! Product was not added', 'product' => $product], 201);
         } else {
-            return redirect()->route('products.index')->with('success', 'Product created successfully');
+            return response()->json([
+                'success' => true,
+                'message' => 'Produto criado com sucesso',
+                'product' => $product
+            ]);
         }
     }
 
