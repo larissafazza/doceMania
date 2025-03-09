@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('img/logo-favicon.png') }}"/>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('img/icon.png') }}"/>
     <head>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -31,30 +31,21 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="./homepage.blade.php"> Início</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="{{ route('products.index') }}">Produtos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('suppliers.index') }}">Fornecedores</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('sales.index') }}">Vendas</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('reports.index') }}">Relatório</a>
-        </li>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Relatórios</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
+            <a class="dropdown-item" href="{{ route('reports.missing') }}">Lista de Faltas</a>
+            <a class="dropdown-item" href="{{ route('reports.expiration') }}">Lista de Validades</a>
+            <a class="dropdown-item" href="#">Relatório Diário</a>
+            <!-- <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a> -->
           </div>
-        </li> -->
+        </li>
       </ul>
       <!-- <form class="d-flex">
         <input class="form-control me-sm-2" type="search" placeholder="Search">
