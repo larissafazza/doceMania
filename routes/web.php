@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,33 +15,37 @@ use App\Http\Controllers\ProductController;
 |
 */
 
+// Auth::routes();
+// Route::get('/', function () {
+//     return view('products.index');
+// });
+
+
+Route::resource('products', ProductController::class)
+->middleware('auth');
+
+Route::resource('reports', ReportController::class)
+->middleware('auth');
+
+Route::resource('sales', SaleController::class)
+->middleware('auth');
+
+Route::resource('suppliers', SupplierController::class)
+->middleware('auth');
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Auth::routes();
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('products', ProductController::class);
-    // ->middleware('auth');
-    // ->except(['edit', 'update', 'destroy']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::resource('reports', ReportController::class);
-    // ->middleware('auth');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::resource('sales', SaleController::class);
-    // ->middleware('auth');
-
-Route::resource('suppliers', SupplierController::class);
-    // ->middleware('auth');
-
-// Route::put('todos/{id}/mark-as-done', [TodoController::class, 'markAsDone'])
-//     ->name('todos.markAsDone')
-//     ->middleware('auth');
-
-
-// Route::get('/home', [HomeController::class, 'index'])
-//     ->name('home')
-//     ->middleware('auth');
+require __DIR__.'/auth.php';

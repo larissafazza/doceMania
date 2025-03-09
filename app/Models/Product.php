@@ -22,5 +22,9 @@ class Product extends Model
         return $this->BelongsTo(Supplier::class);
     }
 
+    public function sales()
+    {
+        return $this->belongsToMany(sales::class)->withPivot('quantity');
+    }
 
 }
