@@ -11,7 +11,7 @@ class SaleController extends Controller
     {
         //NOTE: criar filtros por dia, metodo de pagamento, horários e valor
         // Carregar todas as vendas junto com os produtos
-        $sales = Sale::with('products')->get();
+        $sales = Sale::with('products')->filter(request(['search']))->get();
         return view('sales.index', compact('sales'));
     }
 
