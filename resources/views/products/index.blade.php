@@ -6,14 +6,14 @@
 <div class="main-content">
     <h1>Produtos</h1>
     <div class="content-header">
-        <form class="d-flex">
-            <select class="form-select select-form-item" id="exampleSelect1">
+        <form class="d-flex" method="GET" action="#">
+            <!-- <select class="form-select select-form-item" id="searchFor">
                 <option disabled selected>Buscar por</option>
                 <option>Produto</option>
                 <option>Fornecedor</option>
                 <option>Data</option>
                 <option>Preço</option>
-            </select>
+            </select> -->
             <input class="form-control me-sm-2 search-form-item" type="search" placeholder="Search">
             <button class="btn btn-secondary my-2 my-sm-0 search-button" type="submit">Search</button>
             <button type="button" class="btn btn-info">Novo</button>
