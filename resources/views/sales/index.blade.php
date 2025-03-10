@@ -57,17 +57,16 @@
         searchInput.addEventListener('input', function () {
             const searchTerm = searchInput.value.toLowerCase();
 
-            const rows = document.querySelectorAll('.saleRow'); // Corrigir para .saleRow
+            const rows = document.querySelectorAll('.saleRow');
 
             rows.forEach(function (row) {
-                // Acessar as células corretamente de acordo com a tabela de vendas
-                const sellerName = row.cells[0].textContent.toLowerCase(); // Vendedor
-                const saleTime = row.cells[1].textContent.toLowerCase(); // Horário
-                const clientName = row.cells[2].textContent.toLowerCase(); // Cliente
-                const products = row.cells[3].textContent.toLowerCase(); // Produtos
-                const paymentMethod = row.cells[4].textContent.toLowerCase(); // Pagamento
 
-                // Verifica se algum campo contém o termo de pesquisa
+                const sellerName = row.cells[0].textContent.toLowerCase();
+                const saleTime = row.cells[1].textContent.toLowerCase();
+                const clientName = row.cells[2].textContent.toLowerCase();
+                const products = row.cells[3].textContent.toLowerCase();
+                const paymentMethod = row.cells[4].textContent.toLowerCase();
+
                 if (
                     sellerName.includes(searchTerm) ||
                     saleTime.includes(searchTerm) ||
@@ -75,9 +74,9 @@
                     products.includes(searchTerm) ||
                     paymentMethod.includes(searchTerm)
                 ) {
-                    row.style.display = ''; // Exibe a linha
+                    row.style.display = '';
                 } else {
-                    row.style.display = 'none'; // Oculta a linha
+                    row.style.display = 'none';
                 }
             });
         });
