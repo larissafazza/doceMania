@@ -41,16 +41,10 @@
           <div class="dropdown-menu">
             <a class="dropdown-item" href="{{ route('reports.missing') }}">Lista de Faltas</a>
             <a class="dropdown-item" href="{{ route('reports.expiration') }}">Lista de Validades</a>
-            <a class="dropdown-item" href="#">Relatório Diário</a>
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a> -->
+            <a class="dropdown-item" href="{{ route('reports.invoicing') }}">Relatório Diário</a>
           </div>
         </li>
       </ul>
-      <!-- <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
     </div>
   </div>
 </nav>

@@ -42,7 +42,7 @@
                 <tr>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->supplier->name }}</td>
-                    <td>{{ $product->expiration_date }}</td>
+                    <td>{{ \Carbon\Carbon::parse($product->expiration_date)->format('d/m/Y') }}</td>
                     <td>{{ $product->quantity }}</td>
                     <td>R$ {{ $product->cost }}</td>
                     <td>R$ {{ $product->price }}</td>

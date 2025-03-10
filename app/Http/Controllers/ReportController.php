@@ -6,8 +6,11 @@ use App\Models\Report;
 use Illuminate\Http\Request;
 use App\Http\Response;
 use App\Models\Product;
+use App\Models\Sale;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -17,38 +20,27 @@ class ReportController extends Controller
 
         return view('reports.missing', compact('missingProducts'));
     }
-
-    public function index()
+    public function expiration()
     {
-        $date = now()->toDateString();
-        $products = Product::all();
-        $currentReport = Report::whereDate('generated_at', $date)->first();
-        $sales = $currentReport->sales;
+        $today = Carbon::now();
+        $limitDate = $today->addDays(30);
+        $expiringProducts = Product::whereBetween('expiration_date', [Carbon::now(), $limitDate])
+            ->orderBy('expiration_date', 'asc')
+            ->get();
 
-        return view('reports.index', compact('products', 'sales', 'currentReport', 'date'));
+        return view('reports.expiration', compact('expiringProducts'));
     }
 
-    public function create()
+    public function invoicing()
     {
-        //NOTE: it creates automatically in the beginning of the day when the login is made in the day
 
-        $existingReport = Report::whereDate('date', now()->toDateString())->first();
+        $today = Carbon::today();
+        $sales = Sale::whereDate('date_time', $today)
+            ->orderBy('date_time', 'desc')
+            ->get();
+        $totalSales = $sales->sum('total_cost');
 
-        if ($existingReport) {
-            return redirect()->route('reports.index');
-        }
-
-        $report = new Report();
-        $report->date = now();
-        $report->save();
-
-        return redirect()->route('reports.index')->with('success', 'Relatório criado com sucesso');
-    }
-
-    public function show(Report $report)
-    {
-        $sales = $report->sales;
-        return view('reports.show', compact('report','sales'));
+        return view('reports.invoicing', compact('sales', 'today', 'totalSales'));
     }
 
     public function edit(Report $report)
@@ -61,12 +53,7 @@ class ReportController extends Controller
      */
     public function update(Request $request, Report $report)
     {
-        //NOTE: Atualiza automaticamente com as vendas
-    }
-
-    public function destroy(Report $report)
-    {
-        //NOTE: não remover histórico
+        //NOTE: Atualiza automaticamente com as vendas (?) vai poder alterar?
     }
 
     public function exportPdf()
@@ -76,5 +63,16 @@ class ReportController extends Controller
         $pdf = Pdf::loadView('reports.missing_pdf', compact('missingProducts'));
 
         return $pdf->download('lista_de_faltas.pdf');
+    }
+
+    public function exportInvoicingPdf()
+    {
+        $today = Carbon::today();
+        $sales = Sale::whereDate('created_at', $today)->get();
+        $totalSales = $sales->sum('total_cost');
+
+        $pdf = Pdf::loadView('reports.invoicing_pdf', compact('sales', 'today', 'totalSales'));
+
+        return $pdf->download('faturamento_' . $today->format('Y-m-d') . '.pdf');
     }
 }
