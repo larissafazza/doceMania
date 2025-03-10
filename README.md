@@ -1,10 +1,10 @@
 <p align="center"></p>
 <h3 align="left">
 
-# Doce Mania
+# StockWise Doce Mania
   O objetivo principal do projeto é criar uma ferramenta para a organização de estoque de uma loja, separando-o em categorias, datas de validade, quantidades e faltas.
 
-##### Used tools and programming languages: 
+##### Ferramentas e linguagens de programação utilizadas: 
 * Laravel 8;
 * JSON PHP Extension + Database (MySQL, SQLite) + Web server (Apache) - recomendado: baixe o ambiente de desenvolvimento utilizadno Xampp.
 * Configuração de variáveis de ambiente na máquina (composer, npm, mysql e php).
@@ -15,7 +15,7 @@ Composer
 * Composer.
 * Node.
 
-##### Step by step:
+##### Passo a Passo:
 1. Clone o repositório em seu computador;
 2. Dentro da pasta principal do projeto, crie o arquivo .env;
 3. Edite o arquivo .env com as informações corretas do banco de dados e das configurações de e-mail para os dados locais (o e-mail pode ser utilizado através do Mailtrap para testes, uma ferramenta altamente recomendada);
@@ -27,4 +27,5 @@ Composer
 9. Para executar os testes automatizados, use o comando php artisan test, que testará os métodos get e store para os usuários e as requisições de tarefas.
 10. Por fim, para executar o projeto, rode o comando php artisan serve e acesse a URL exibida no terminal.
 
+* Para rodar os testes, utilize o comando php artisan test
 #### Desenvolvido por Larissa Rezende Fazza ####
