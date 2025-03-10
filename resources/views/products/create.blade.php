@@ -3,50 +3,49 @@
 @section('title', 'Produtos')
 
 @section('content')
-<div class="main-content">
+<div class="">
     <h1>Criar produto</h1>
-    <div class="content-header">
-        <form class="d-flex" method="POST" id="productForm" action="{{ route('products.store') }}">
-            <div class="form-group">
-                <label for="name">Nome</label>
-                <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelp" required>
-            </div>
-            <div class="form-group">
-                <label for="quantity">Quantidade</label>
-                <input type="number" class="form-control" name="quantity" id="quantity" required>
-            </div>
-            <div class="form-group">
-                <label for="expirationDate">Data de validade</label>
-                <input type="date" class="form-control" name="expirationDate" id="expirationDate" required>
-            </div>
-            <div class="form-group">
-                <label for="price">Preço</label>
-                <input type="number" class="form-control" name="price" id="price" required>
+    <div class="container">
+        <form method="POST" id="productForm" action="{{ route('products.store') }}">
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="name">Nome</label>
+                    <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelp" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="quantity">Quantidade</label>
+                    <input type="number" class="form-control" name="quantity" id="quantity" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="expirationDate">Data de validade</label>
+                    <input type="date" class="form-control" name="expirationDate" id="expirationDate" required>
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label for="supplier_id" class="form-label">Fornecedor</label>
-                <select class="form-control" id="supplier_id" name="supplier_id" required>
-                    <option value="">Selecione um fornecedor</option>
-                    @foreach ($suppliers as $supplier)
-                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                    @endforeach
-                </select>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="price">Preço</label>
+                    <input type="float" class="form-control" name="price" id="price" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="supplier_id">Fornecedor</label>
+                    <select class="form-control" id="supplier_id" name="supplier_id" required>
+                        <option value="">Selecione um fornecedor</option>
+                        @foreach ($suppliers as $supplier)
+                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Criar</button>
-            <button class="btn btn-secondary my-2 my-sm-0 search-button" type="submit">Criar 2</button>
+
+            <!-- Usando um contêiner d-flex para alinhar o botão à direita -->
+            <div class="form-group d-flex justify-content-end">
+                <button class="btn btn-secondary mt-2" type="submit">Criar</button>
+            </div>
         </form>
     </div>
 </div>
-
-<!-- @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif -->
-
-<!-- <div id="successMessage" class="alert alert-success" style="display: none;"></div> -->
-
 
 <script>
     document.getElementById("productForm").addEventListener("submit", function(event) {
@@ -64,8 +63,6 @@
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // alert("Produto adicionar com sucesso!");
-                
                 let toast = new bootstrap.Toast(document.getElementById("successToast"));
                 toast.show();
                 document.getElementById("productForm").reset(); // Reseta os campos
