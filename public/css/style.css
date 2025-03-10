@@ -9,8 +9,9 @@ table{
     background-color: rgb(255, 250, 243);
     border-top: 2px solid #f3969a;
     margin-top: 20px;
+    border-spacing: 0px;
 }
-th {
+.table-head {
     color:rgb(32, 49, 145);
     font-weight: bold;
     border: 2px solid #d9d9d9;
@@ -27,7 +28,6 @@ td {
 div{
     position: relative;
 }
-/* products */
 .products-table{
     width: 100%;
     background-color: rgb(255, 250, 243);
@@ -54,8 +54,11 @@ div{
     width: 100px !important;
 }
 .limited-text {
-    max-width: 500px;  /* Define um limite de largura */
+    max-width: 500px;
     overflow: hidden;
-    /* white-space: nowrap; */
     text-overflow: ellipsis;
+}
+h4{
+    margin-block-start: 0;
+    margin-block-end: 0;
 }

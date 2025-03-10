@@ -18,7 +18,6 @@ class SaleSeeder extends Seeder
             'total_cost' => 150.00,
             'payment_method' => 'Credito',
             'user_id' => 1,
-            'report_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -28,7 +27,6 @@ class SaleSeeder extends Seeder
             'total_cost' => 50.00,
             'payment_method' => 'pix',
             'user_id' => 1,
-            'report_id' => 2,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -38,7 +36,6 @@ class SaleSeeder extends Seeder
             'total_cost' => 16.40,
             'payment_method' => 'dabito',
             'user_id' => 1,
-            'report_id' => 2,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
