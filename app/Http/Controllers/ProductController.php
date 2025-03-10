@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function create()
     {
         $suppliers = Supplier::all();
-            return view('products.create', compact('suppliers'));
+        return view('products.create', compact('suppliers'));
     }
 
     public function store(Request $request)
@@ -41,12 +41,16 @@ class ProductController extends Controller
             'supplier_id' => $request->supplier_id
         ];
 
-        $product = Todo::create($data);
+        $product = Product::create($data);
 
         if ($request->ajax()) {
             return response()->json(['message' => 'Oops! Something happened! Product was not added', 'product' => $product], 201);
         } else {
-            return redirect()->route('products.index')->with('success', 'Product created successfully');
+            return response()->json([
+                'success' => true,
+                'message' => 'Produto criado com sucesso',
+                'product' => $product
+            ]);
         }
     }
 
