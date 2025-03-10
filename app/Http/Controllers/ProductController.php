@@ -82,4 +82,16 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
     }
+
+    public function getProducts($query, array $filters)
+    {
+        return Product::all()->filter()->get();
+        // $query->when($filters['search'] ?? false, fn($query, $search) => 
+        //     $query
+        //         ->where('name', 'like', '%',  ))
+        // //NOTE: should delete? or just keep it as unavailable?
+        // $product->delete();
+
+        // return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+    }
 }
