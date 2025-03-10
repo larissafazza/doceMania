@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function create()
     {
         $suppliers = Supplier::all();
-            return view('products.create', compact('suppliers'));
+        return view('products.create', compact('suppliers'));
     }
 
     public function store(Request $request)
@@ -29,6 +29,7 @@ class ProductController extends Controller
             'quantity' => 'required|integer',
             'expiration_date' => 'required|date',
             'price' => 'required|numeric',
+            'cost' => 'required|numeric',
             'supplier_id' => 'required|integer'
         ]);
 
@@ -37,16 +38,22 @@ class ProductController extends Controller
             'quantity' => $request->quantity,
             'expiration_date' => $request->expiration_date,
             'price' => $request->price,
+            'cost' => $request->price,
             'supplier_id' => $request->supplier_id
         ];
 
-        $product = Todo::create($data);
+        $product = Product::create($data);
 
-        if ($request->ajax()) {
-            return response()->json(['message' => 'Oops! Something happened! Product was not added', 'product' => $product], 201);
-        } else {
-            return redirect()->route('products.index')->with('success', 'Product created successfully');
-        }
+        return redirect()->route('products.create')->with('success', 'Produto criado com sucesso!');
+        // if ($request->ajax()) {
+        //     return response()->json(['message' => 'Oops! Something happened! Product was not added', 'product' => $product], 201);
+        // } else {
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'Produto criado com sucesso',
+        //         'product' => $product
+        //     ]);
+        // }
     }
 
     public function edit(Product $product)
@@ -86,6 +93,7 @@ class ProductController extends Controller
     public function getProducts($query, array $filters)
     {
         return Product::all()->filter()->get();
+      
         // $query->when($filters['search'] ?? false, fn($query, $search) => 
         //     $query
         //         ->where('name', 'like', '%',  ))

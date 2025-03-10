@@ -14,12 +14,13 @@ class Product extends Model
         'quantity',
         'expiration_date',
         'price',
-        'stock_id'
+        'cost',
+        'supplier_id'
     ];
 
     public function supplier(){
 
-        return $this->BelongsTo(Supplier::class);
+        return $this->BelongsTo(Supplier::class, 'supplier_id');
     }
 
     public function sales()
@@ -29,7 +30,6 @@ class Product extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        
         $query->when($filters['search'] ?? false, fn($query, $search) =>
             $query
                 ->where('name', 'like', '%' . $search . '%')
