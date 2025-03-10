@@ -6,15 +6,15 @@
 <div class="main-content">
     <h1>Histórico de Vendas</h1>
     <div class="content-header">
-        <form class="d-flex">
-            <select class="form-select select-form-item" id="exampleSelect1">
+        <form class="d-flex" method="GET" action="#">
+            <!-- <select class="form-select select-form-item" id="exampleSelect1">
                 <option disabled selected>Buscar por</option>
                 <option>Cliente</option>
                 <option>Valor</option>
                 <option>Pagamento</option>
                 <option>Horário</option>
-            </select>
-            <input class="form-control me-sm-2 search-form-item" type="search" placeholder="Search">
+            </select> -->
+            <input class="form-control me-sm-2 search-form-item" type="search" name="search" placeholder="Search">
             <button class="btn btn-secondary my-2 my-sm-0 search-button" type="submit">Search</button>
             <button type="button" class="btn btn-info">Novo</button>
         </form>
@@ -29,12 +29,12 @@
     <table class="products-table">
         <thead>
             <tr>
-                <th scope="col">Vendedor</th>
-                <th scope="col">Horário</th>
-                <th scope="col">Cliente</th>
-                <th scope="col">Produtos</th>
-                <th scope="col">Pagamento</th>
-                <th scope="col">Valor</th>
+                <th class="table-head" scope="col">Vendedor</th>
+                <th class="table-head" scope="col">Horário</th>
+                <th class="table-head" scope="col">Cliente</th>
+                <th class="table-head" scope="col">Produtos</th>
+                <th class="table-head" scope="col">Pagamento</th>
+                <th class="table-head" scope="col">Valor</th>
             </tr>
         </thead>
         <tbody>

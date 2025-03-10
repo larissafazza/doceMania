@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Supplier;
+use App\Http\Controllers\SupplierController;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        // $user = auth()->user();
+        $products = Product::all()->filter(request(['search']))->get();
         $products = Product::all();
 
         return view('products.index', compact('products'));
@@ -17,15 +19,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        $user_type =  Auth::type();
-        if($user_type == 'admin'){
-            return view('todos.create', compact('user_type'));
-        } else {
-            return redirect()->route('products.index')->with('error', 'Você não possui permissão para acessar essa página.');
-        }
-
-        $suppliers = Supplier::all(); // Busca todos os fornecedores
-        return view('products.create', compact('user_id', suppliers));
+        $suppliers = Supplier::all();
+        return view('products.create', compact('suppliers'));
     }
 
     public function store(Request $request)
@@ -91,5 +86,17 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+    }
+
+    public function getProducts($query, array $filters)
+    {
+        return Product::all()->filter()->get();
+        // $query->when($filters['search'] ?? false, fn($query, $search) => 
+        //     $query
+        //         ->where('name', 'like', '%',  ))
+        // //NOTE: should delete? or just keep it as unavailable?
+        // $product->delete();
+
+        // return redirect()->route('products.index')->with('success', 'Product deleted successfully');
     }
 }

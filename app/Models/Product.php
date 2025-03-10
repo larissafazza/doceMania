@@ -27,4 +27,15 @@ class Product extends Model
         return $this->belongsToMany(sales::class)->withPivot('quantity');
     }
 
+    public function scopeFilter($query, array $filters)
+    {
+        
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+            $query
+                ->where('name', 'like', '%' . $search . '%')
+                ->orWhere('supplier', 'like', '%' . $search . '%')
+                ->orWhere('expiration_date', 'like', '%' . $search . '%')
+        );
+    }
+
 }
