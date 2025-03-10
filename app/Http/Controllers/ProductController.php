@@ -4,26 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Supplier;
+use App\Http\Controllers\SupplierController;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        // $user = auth()->user();
         $products = Product::all()->filter(request(['search']))->get();
+        $products = Product::all();
 
         return view('products.index', compact('products'));
     }
 
     public function create()
     {
-        $user_type =  Auth::type();
-        if($user_type == 'admin'){
-            return view('todos.create', compact('user_type'));
-        } else {
-            return redirect()->route('products.index')->with('error', 'Você não possui permissão para acessar essa página.');
-        }
-        return view('products.create', compact('user_id'));
+        $suppliers = Supplier::all();
+            return view('products.create', compact('suppliers'));
     }
 
     public function store(Request $request)
