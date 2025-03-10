@@ -7,6 +7,7 @@
     <h1>Produtos</h1>
     <div class="content-header" style="display:flex">
         <input class="form-control me-sm-2 search-form-item" type="search" id="searchInput" placeholder="Buscar">
+        <a href="{{ route('products.create') }}" class="btn btn-info" style="float:right;">Novo</a>
     </div>
 
     @if (session()->has('success'))
