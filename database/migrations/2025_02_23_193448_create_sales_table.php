@@ -18,7 +18,6 @@ return new class extends Migration
             $table->float('total_cost', 6, 2);
             $table->string('payment_method');
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('report_id')->constrained();
             $table->timestamps();
         });
     }
