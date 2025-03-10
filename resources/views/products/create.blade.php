@@ -5,8 +5,14 @@
 @section('content')
 <div class="">
     <h1>Criar produto</h1>
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="container">
         <form method="POST" id="productForm" action="{{ route('products.store') }}">
+        @csrf
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for="name">Nome</label>
@@ -18,14 +24,19 @@
                 </div>
                 <div class="col-md-4">
                     <label for="expirationDate">Data de validade</label>
-                    <input type="date" class="form-control" name="expirationDate" id="expirationDate" required>
+                    <input type="date" class="form-control" name="expiration_date" id="expirationDate" required>
                 </div>
             </div>
 
             <div class="form-group row">
-                <div class="col-md-6">
-                    <label for="price">Preço</label>
+                <div class="col-md-3">
+                    <label for="price">Preço de Custo</label>
                     <input type="float" class="form-control" name="price" id="price" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="cost">Valor de Venda</label>
+                    <input type="float" class="form-control" name="cost" id="cost" required>
                 </div>
 
                 <div class="col-md-6">
@@ -39,15 +50,14 @@
                 </div>
             </div>
 
-            <!-- Usando um contêiner d-flex para alinhar o botão à direita -->
             <div class="form-group d-flex justify-content-end">
-                <button class="btn btn-secondary mt-2" type="submit">Criar</button>
+                <button class="btn btn-secondary mt-5" type="submit">Criar</button>
             </div>
         </form>
     </div>
 </div>
 
-<script>
+<!-- <script>
     document.getElementById("productForm").addEventListener("submit", function(event) {
         event.preventDefault(); // Evita o reload da página
 
@@ -72,6 +82,6 @@
         })
         .catch(error => console.log(error));
     });
-</script>
+</script> -->
 
 @endsection

@@ -14,6 +14,7 @@ class Product extends Model
         'quantity',
         'expiration_date',
         'price',
+        'cost',
         'supplier_id'
     ];
 
@@ -29,7 +30,7 @@ class Product extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        
+
         $query->when($filters['search'] ?? false, fn($query, $search) =>
             $query
                 ->where('name', 'like', '%' . $search . '%')
