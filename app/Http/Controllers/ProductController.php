@@ -93,7 +93,8 @@ class ProductController extends Controller
     public function getProducts($query, array $filters)
     {
         return Product::all()->filter()->get();
-        // $query->when($filters['search'] ?? false, fn($query, $search) =>
+      
+        // $query->when($filters['search'] ?? false, fn($query, $search) => 
         //     $query
         //         ->where('name', 'like', '%',  ))
         // //NOTE: should delete? or just keep it as unavailable?

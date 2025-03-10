@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="{{ asset('img/icon.png') }}"/>
     <head>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('img/icon.png') }}"/>
-    <link rel="icon" href="images/icon.jpg" type="image/x-icon">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Doce Mania | @yield('title', '')</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Link para o Bootswatch baixado -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Adicionar seu CSS personalizado, se houver -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            @include('layouts.navigation')
 
     <!-- Navbar (opcional) -->
     <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
@@ -49,11 +51,10 @@
   </div>
 </nav>
 
-    <div class="container mt-4">
-        @yield('content')
-    </div>
-
-    <!-- Scripts do Bootstrap (JS) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
+    </body>
 </html>
