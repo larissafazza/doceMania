@@ -1,23 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Produtos')
+@section('title', 'Histórico de Vendas')
 
 @section('content')
 <div class="main-content">
     <h1>Histórico de Vendas</h1>
-    <div class="content-header">
-        <form class="d-flex" method="GET" action="#">
-            <!-- <select class="form-select select-form-item" id="exampleSelect1">
-                <option disabled selected>Buscar por</option>
-                <option>Cliente</option>
-                <option>Valor</option>
-                <option>Pagamento</option>
-                <option>Horário</option>
-            </select> -->
-            <input class="form-control me-sm-2 search-form-item" type="search" name="search" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0 search-button" type="submit">Search</button>
-            <button type="button" class="btn btn-info">Novo</button>
-        </form>
+    <div class="content-header" style="display:flex">
+        <input class="form-control me-sm-2 search-form-item" type="search" id="searchInput" placeholder="Buscar">
+        <button type="button" class="btn btn-info" style="float:right;">Novo</button>
     </div>
 
     @if (session()->has('success'))
@@ -37,16 +27,16 @@
                 <th class="table-head" scope="col">Valor</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="salesTableBody">
             @foreach ($sales as $sale)
-                <tr>
+                <tr class="saleRow">
                     <td>{{ $sale->user->name }}</td>
-                    <td>{{ $sale->date_time }}</td>
+                    <td>{{ \Carbon\Carbon::parse($sale->date_time)->format('d/m/Y H:i') }}</td>
                     <td>{{ $sale->client_name }}</td>
                     <td>
                         <ul class="limited-text">
                             @foreach ($sale->products as $product)
-                            {{ $product->pivot->quantity }} {{ $product->name }},
+                                {{ $product->pivot->quantity }} {{ $product->name }},
                             @endforeach
                         </ul>
                     </td>
@@ -55,6 +45,41 @@
                 </tr>
             @endforeach
         </tbody>
+    </table>
 </div>
 
 @endsection
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('searchInput');
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            const rows = document.querySelectorAll('.saleRow'); // Corrigir para .saleRow
+
+            rows.forEach(function (row) {
+                // Acessar as células corretamente de acordo com a tabela de vendas
+                const sellerName = row.cells[0].textContent.toLowerCase(); // Vendedor
+                const saleTime = row.cells[1].textContent.toLowerCase(); // Horário
+                const clientName = row.cells[2].textContent.toLowerCase(); // Cliente
+                const products = row.cells[3].textContent.toLowerCase(); // Produtos
+                const paymentMethod = row.cells[4].textContent.toLowerCase(); // Pagamento
+
+                // Verifica se algum campo contém o termo de pesquisa
+                if (
+                    sellerName.includes(searchTerm) ||
+                    saleTime.includes(searchTerm) ||
+                    clientName.includes(searchTerm) ||
+                    products.includes(searchTerm) ||
+                    paymentMethod.includes(searchTerm)
+                ) {
+                    row.style.display = ''; // Exibe a linha
+                } else {
+                    row.style.display = 'none'; // Oculta a linha
+                }
+            });
+        });
+    });
+</script>

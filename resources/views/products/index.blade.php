@@ -5,19 +5,9 @@
 @section('content')
 <div class="main-content">
     <h1>Produtos</h1>
-    <div class="content-header">
-        <form class="d-flex" method="GET" action="#">
-            <!-- <select class="form-select select-form-item" id="searchFor">
-                <option disabled selected>Buscar por</option>
-                <option>Produto</option>
-                <option>Fornecedor</option>
-                <option>Data</option>
-                <option>Preço</option>
-            </select> -->
-            <input class="form-control me-sm-2 search-form-item" type="search" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0 search-button" type="submit">Search</button>
-            <button type="button" class="btn btn-info">Novo</button>
-        </form>
+    <div class="content-header" style="display:flex">
+        <input class="form-control me-sm-2 search-form-item" type="search" id="searchInput" placeholder="Buscar">
+        <button type="button" class="btn btn-info" style="float:right;">Novo</button>
     </div>
 
     @if (session()->has('success'))
@@ -30,16 +20,16 @@
         <thead>
             <tr>
                 <th class="table-head" scope="col">Produto</th>
-                <th class="table-head" scope="col">fornecedor</th>
+                <th class="table-head" scope="col">Fornecedor</th>
                 <th class="table-head" scope="col">Validade</th>
                 <th class="table-head" scope="col">Quantidade</th>
                 <th class="table-head" scope="col">Custo</th>
                 <th class="table-head" scope="col">Venda</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="productsTableBody">
             @foreach ($products as $product)
-                <tr>
+                <tr class="productRow">
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->supplier->name }}</td>
                     <td>{{ \Carbon\Carbon::parse($product->expiration_date)->format('d/m/Y') }}</td>
@@ -49,6 +39,30 @@
                 </tr>
             @endforeach
         </tbody>
+    </table>
 </div>
 
 @endsection
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('searchInput');
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            const rows = document.querySelectorAll('.productRow');
+
+            rows.forEach(function (row) {
+                const productName = row.cells[0].textContent.toLowerCase();
+                const supplierName = row.cells[1].textContent.toLowerCase();
+
+                if (productName.includes(searchTerm) || supplierName.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
