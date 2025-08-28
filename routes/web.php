@@ -17,29 +17,29 @@ use App\Http\Controllers\SupplierController;
 |
 */
 
-Route::resource('products', ProductController::class)
-->middleware('auth');
+Route::resource('products', ProductController::class);
+// ->middleware('auth');
 
 Route::get('/report/missing', [ReportController::class, 'missing'])->name('reports.missing');
 Route::get('/report/missing/export-pdf', [ReportController::class, 'exportPdf'])->name('report.missing.export');
 Route::get('/report/invoicing', [ReportController::class, 'invoicing'])->name('reports.invoicing');
 Route::get('/report/missing/invoicing-pdf', [ReportController::class, 'exportInvoicingPdf'])->name('report.invoicing.export');
 Route::get('/report/expiration', [ReportController::class, 'expiration'])->name('reports.expiration');
-Route::resource('sales', SaleController::class)
-->middleware('auth');
+Route::resource('sales', SaleController::class);
+// ->middleware('auth');
 
-Route::resource('suppliers', SupplierController::class)
-->middleware('auth');
+Route::resource('suppliers', SupplierController::class);
+// ->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__.'/auth.php';
