@@ -5,9 +5,11 @@
 @section('content')
 <div class="main-content">
     <h1>Produtos</h1>
-    <div class="content-header" style="display:flex">
-        <input class="form-control me-sm-2 search-form-item" type="search" id="searchInput" placeholder="Buscar">
-        <a href="{{ route('products.create') }}" class="btn btn-info" style="float:right;">Novo</a>
+    <div style="display:flex; margin-bottom:10px;">
+        <a href="{{ route('products.create') }}" class="btn btn-info add-button">Adicionar Produto</a>
+    </div>
+    <div class="content-header">
+        <input class="form-control me-sm-2 search-form-item header-search" type="search" id="searchInput" placeholder="Buscar">
     </div>
 
     @if (session()->has('success'))

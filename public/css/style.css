@@ -1,23 +1,39 @@
 body{
-    background-color: #ddf3ff;
+    background-color: #1d2240;
 }
+
+.add-button{
+    float: right;
+    margin-left: auto;
+    margin-bottom: auto;
+}
+
+.header-search{
+    border-radius: 0;
+    border: 2px solid rgb(217, 217, 217);
+    border-bottom: none;
+}
+
+.navbar {
+    border-bottom: 2px solid rgb(217, 217, 217)!important;
+}
+
 .nav-link{
-    color:rgb(32, 49, 145);
+    color:#1d2240;
 }
+
 table{
     width: 100%;
     background-color: rgb(255, 250, 243);
-    border-top: 2px solid #f3969a;
-    margin-top: 20px;
+    border-top: 3px solid #f3969a;
     border-spacing: 0px;
 }
 .table-head {
-    color:rgb(32, 49, 145);
+    color:#1d2240;
     font-weight: bold;
     border: 2px solid #d9d9d9;
     padding: 10px;
     text-align: center;
-    border-top: #8d0c68;
 }
 td {
     color:black;
@@ -31,33 +47,29 @@ div{
 .products-table{
     width: 100%;
     background-color: rgb(255, 250, 243);
-    margin-top: 20px;
 }
 .add-products-button{
     position: absolute;
 }
-.content-header{
-    display:flexbox;
-}
+
 .btn-create-item{
     float:right;
     margin-bottom: 30px;
 }
 .select-form-item{
     width: 20%;
-    margin-right: 15px;
 }
-.search-button{
-    margin-right: 15px;
+
+.dropdown-item{
+    color:#1d2240;
 }
-.nav-img{
-    width: 100px !important;
-}
+
 .limited-text {
     max-width: 500px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 h4{
     margin-block-start: 0;
     margin-block-end: 0;

@@ -4,10 +4,9 @@
 
 @section('content')
 <div class="main-content">
-    <h1>Histórico de Vendas</h1>
-    <div class="content-header" style="display:flex">
-        <input class="form-control me-sm-2 search-form-item" type="search" id="searchInput" placeholder="Buscar">
-        <button type="button" class="btn btn-info" style="float:right;">Novo</button>
+    <h1 style="margin-bottom:54px;">Vendas do dia</h1>
+    <div class="content-header">
+        <input class="form-control me-sm-2 search-form-item header-search" type="search" id="searchInput" placeholder="Buscar">
     </div>
 
     @if (session()->has('success'))
